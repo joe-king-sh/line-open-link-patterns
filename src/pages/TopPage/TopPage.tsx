@@ -19,12 +19,13 @@ export const TopPageView = ({ idToken }: TopPageViewProps): JSX.Element => {
       <button
         type="button"
         onClick={() => {
-          window.location.href =
-            "https://joe-king-sh.github.io/line-open-link-patterns/external-site.html";
+          window.location.href = "./external-site.html";
         }}
       >
         LINEミニアプリ外の外部サイトへ遷移
       </button>
+
+      <a href="./external-site.html">Aタグリンク</a>
     </>
   );
 };
