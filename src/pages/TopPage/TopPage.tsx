@@ -3,7 +3,7 @@ import { useLiff } from "@/hooks/useLiff";
 import { buildAppTitle } from "@/utils/string";
 
 export type TopPageViewProps = {
-  idToken?: string;
+  idToken?: string | undefined;
 };
 
 export const TopPageView = ({ idToken }: TopPageViewProps): JSX.Element => {
@@ -15,6 +15,16 @@ export const TopPageView = ({ idToken }: TopPageViewProps): JSX.Element => {
 
       <div className="px-5">LINE ミニアプリの検証用サイト</div>
       <div className="px-5">idToken: {idToken}</div>
+
+      <button
+        type="button"
+        onClick={() => {
+          window.location.href =
+            "https://joe-king-sh.github.io/line-open-link-patterns/external-site.html";
+        }}
+      >
+        LINEミニアプリ外の外部サイトへ遷移
+      </button>
     </>
   );
 };
