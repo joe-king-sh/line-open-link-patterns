@@ -3,7 +3,7 @@ import { type Config } from "./configType";
 export const config: Config = {
   stageName: "LOCAL",
   // cspell:disable
-  liffId: "2005957091-1Ogyeop2",
+  liffId: "1661238265-KVrPqQE7",
   mockedApi: false,
-  repositoryName: "line-miniapp-test-template",
+  repositoryName: "line-open-link-patterns",
 };
