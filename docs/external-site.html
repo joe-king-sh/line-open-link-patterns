@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>外部サイトリンク集</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .link-container {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .link-description {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 8px 12px;
+        margin: 5px 0;
+        cursor: pointer;
+      }
+      a {
+        display: inline-block;
+        margin: 5px 0;
+        padding: 8px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Google.comへのリンク集（様々な開き方パターン）</h1>
+
+    <div class="link-container">
+      <div class="link-description">
+        1. 通常のHTMLリンク（_self - 同じタブで開く）
+      </div>
+      <a href="https://www.google.com">Google（同じタブで開く）</a>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        1-2. 通常のHTMLリンク（openExternalBrowser=1を付与）
+      </div>
+      <a href="https://www.google.com?openExternalBrowser=1"
+        >Google（同じタブで開く）</a
+      >
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        2. 通常のHTMLリンク（_blank - 新しいタブで開く）
+      </div>
+      <a href="https://www.google.com" target="_blank" rel="noopener noreferrer"
+        >Google（新しいタブで開く）</a
+      >
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        3. JavaScript - location.href（同じタブで開く）
+      </div>
+      <button onclick="window.location.href='https://www.google.com'">
+        Google（location.href - 同じタブ）
+      </button>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        4. JavaScript - location.assign（同じタブで開く）
+      </div>
+      <button onclick="window.location.assign('https://www.google.com')">
+        Google（location.assign - 同じタブ）
+      </button>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        5. JavaScript - location.replace（同じタブで開く、履歴を残さない）
+      </div>
+      <button onclick="window.location.replace('https://www.google.com')">
+        Google（location.replace - 同じタブ、戻れない）
+      </button>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        6. JavaScript - window.open（新しいタブで開く）
+      </div>
+      <button onclick="window.open('https://www.google.com')">
+        Google（window.open - 新しいタブ）
+      </button>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        7. JavaScript - window.open + _blank（新しいタブで開く）
+      </div>
+      <button onclick="window.open('https://www.google.com', '_blank')">
+        Google（window.open + _blank）
+      </button>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        8. JavaScript - window.open + _blank + noreferrer（新しいタブで開く）
+      </div>
+      <button
+        onclick="window.open('https://www.google.com', '_blank', 'noreferrer')"
+      >
+        Google（window.open + _blank + noreferrer）
+      </button>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        9. JavaScript - window.open + 新しいウィンドウで開く
+      </div>
+      <button
+        onclick="window.open('https://www.google.com', '_blank', 'width=800,height=600')"
+      >
+        Google（新しいウィンドウで開く）
+      </button>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">10. form要素とsubmitを使用</div>
+      <form action="https://www.google.com" method="get">
+        <button type="submit">Google（form submit - 同じタブ）</button>
+      </form>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        11. form要素とsubmitを使用（新しいタブ）
+      </div>
+      <form action="https://www.google.com" method="get" target="_blank">
+        <button type="submit">Google（form submit - 新しいタブ）</button>
+      </form>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">
+        12. setTimeout を使用して遅延リダイレクト
+      </div>
+      <button
+        onclick="setTimeout(() => { window.location.href = 'https://www.google.com'; }, 1000)"
+      >
+        Google（1秒後にリダイレクト）
+      </button>
+    </div>
+
+    <div class="link-container">
+      <div class="link-description">13. iframe内で開く</div>
+      <button
+        onclick="document.getElementById('myFrame').src = 'https://www.google.com'"
+      >
+        iframeでGoogleを表示
+      </button>
+      <br />
+      <iframe
+        id="myFrame"
+        width="100%"
+        height="300"
+        style="border: 1px solid #ddd; margin-top: 10px"
+      ></iframe>
+    </div>
+
+    <script>
+      // URLのフラグメント（#以降）を使用したリダイレクト用の関数
+      function checkHashRedirect() {
+        if (window.location.hash === "#redirect") {
+          window.location.href = "https://www.google.com";
+        }
+      }
+
+      // ページ読み込み時に実行
+      window.onload = checkHashRedirect;
+    </script>
+  </body>
+</html>
